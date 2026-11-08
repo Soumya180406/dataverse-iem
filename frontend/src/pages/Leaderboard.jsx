@@ -6,7 +6,7 @@ import { Podium, RankTable, LiveBadge, showPodium } from "@/components/leaderboa
 import { useLeaderboard } from "@/hooks/useLeaderboard";
 
 export default function Leaderboard() {
-  const { items, total, updated_at } = useLeaderboard();
+  const { items, games, total, updated_at } = useLeaderboard();
   const [q, setQ] = useState("");
   useEffect(() => { document.title = "Live Leaderboard | DataVerse 2K27"; window.scrollTo(0, 0); }, []);
   const shown = useMemo(() => {
@@ -30,7 +30,7 @@ export default function Leaderboard() {
             <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-500" />
             <input className="field !pl-10" placeholder="Find your name or college" value={q} onChange={(e) => setQ(e.target.value)} data-testid="leaderboard-search" />
           </div>
-          <div className="mt-4"><RankTable items={shown} empty={q ? "No one matches that search." : undefined} /></div>
+          <div className="mt-4"><RankTable games={games} items={shown} empty={q ? "No one matches that search." : undefined} /></div>
         </div>
       </main>
       <Footer />

@@ -1,5 +1,5 @@
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { TEAM } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
 const initials = (name) => name.split(" ").map((w) => w[0]).join("").slice(0, 2);
 
@@ -27,7 +27,7 @@ const StudentCard = ({ m, i }) => (
   </Reveal>
 );
 
-export const Team = () => (
+export const Team = () => { const { TEAM } = useSite(); return (
   <section id="team" className="relative py-20 md:py-32" data-testid="team-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="team" eyebrow="// Organising Team" title="The minds behind the verse" />
@@ -47,4 +47,4 @@ export const Team = () => (
       </div>
     </div>
   </section>
-);
+); };

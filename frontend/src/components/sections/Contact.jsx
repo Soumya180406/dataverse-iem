@@ -1,8 +1,9 @@
 import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { CONTACT, INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/content";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
-export const Contact = () => (
+export const Contact = () => { const { CONTACT } = useSite(); return (
   <section id="contact" className="relative py-20 md:py-32" data-testid="contact-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="contact" eyebrow="// Contact & Social" title="Ping the verse" />
@@ -30,4 +31,4 @@ export const Contact = () => (
       </div>
     </div>
   </section>
-);
+); };

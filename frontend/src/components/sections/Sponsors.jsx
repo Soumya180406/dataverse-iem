@@ -1,8 +1,9 @@
 import { Handshake } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { SPONSORS, CONTACT } from "@/data/content";
+import { SPONSORS } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
-export const Sponsors = () => (
+export const Sponsors = () => { const { CONTACT } = useSite(); return (
   <section id="sponsors" className="relative overflow-hidden py-20 md:py-32" data-testid="sponsors-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="sponsors" eyebrow="// Sponsors & Partners" title="Powered by people who believe in data" />
@@ -31,4 +32,4 @@ export const Sponsors = () => (
       </div>
     </div>
   </section>
-);
+); };

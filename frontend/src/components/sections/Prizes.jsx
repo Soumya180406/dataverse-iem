@@ -1,8 +1,9 @@
 import { Gift } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { PRIZES, HIGHLIGHTS } from "@/data/content";
+import { HIGHLIGHTS } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
-export const Prizes = () => (
+export const Prizes = () => { const { PRIZES } = useSite(); return (
   <section id="prizes" className="relative py-20 md:py-32" data-testid="prizes-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="prizes" eyebrow="// Prizes & Rewards" title={<>Same data. <span className="gradient-text">Bigger possibilities.</span></>} />
@@ -40,4 +41,4 @@ export const Prizes = () => (
       </div>
     </div>
   </section>
-);
+); };

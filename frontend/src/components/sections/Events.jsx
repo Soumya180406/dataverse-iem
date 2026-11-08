@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight, Download, FileWarning, Ruler } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { EVENTS } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
 const ACCENT = {
   cyan: "text-cyan-300 border-cyan-400/30 hover:border-cyan-300/80 hover:shadow-[0_0_40px_rgba(6,182,212,0.25)]",
@@ -33,7 +33,7 @@ const EventCard = ({ e, i }) => (
   </Reveal>
 );
 
-export const Events = () => (
+export const Events = () => { const { EVENTS } = useSite(); return (
   <section id="events" className="relative py-20 md:py-32" data-testid="events-section">
     <div className="cyber-grid absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]" />
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -44,4 +44,4 @@ export const Events = () => (
       </div>
     </div>
   </section>
-);
+); };

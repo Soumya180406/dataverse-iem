@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { api } from "@/lib/api";
 
 export const useLeaderboard = (intervalMs = 5000) => {
-  const [data, setData] = useState({ items: [], total: 0, updated_at: null });
+  const [data, setData] = useState({ games: [], items: [], total: 0, updated_at: null });
   const [loaded, setLoaded] = useState(false);
   const refresh = useCallback(async () => {
     try {

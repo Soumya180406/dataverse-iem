@@ -1,6 +1,6 @@
 import { Star } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { SCHEDULE } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 import { AddToCalendar } from "@/components/site/AddToCalendar";
 
 const THEME = {
@@ -38,7 +38,7 @@ const DayPanel = ({ id, day }) => {
   );
 };
 
-export const Schedule = () => (
+export const Schedule = () => { const { SCHEDULE } = useSite(); return (
   <section id="schedule" className="relative py-20 md:py-32" data-testid="schedule-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="schedule" eyebrow="// Event Schedule" title="Two days, minute by minute" />
@@ -52,4 +52,4 @@ export const Schedule = () => (
       </p>
     </div>
   </section>
-);
+); };

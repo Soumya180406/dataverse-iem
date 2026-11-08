@@ -5,7 +5,7 @@ import { Podium, RankTable, LiveBadge, showPodium } from "@/components/leaderboa
 import { useLeaderboard } from "@/hooks/useLeaderboard";
 
 export const LeaderboardSection = () => {
-  const { items, updated_at } = useLeaderboard();
+  const { items, games, updated_at } = useLeaderboard();
   const pod = showPodium(items);
   return (
     <section id="leaderboard" className="relative py-20 md:py-32" data-testid="leaderboard-section">
@@ -18,7 +18,7 @@ export const LeaderboardSection = () => {
           </Link>
         </div>
         {pod && <div className="mb-6"><Podium items={items} /></div>}
-        <RankTable items={items.slice(pod ? 3 : 0, 10)} empty={items.length ? "More ranks will appear here." : undefined} />
+        <RankTable games={games} items={items.slice(pod ? 3 : 0, 10)} empty={items.length ? "More ranks will appear here." : undefined} />
       </div>
     </section>
   );

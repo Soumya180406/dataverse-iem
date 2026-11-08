@@ -14,7 +14,7 @@ import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 import { Prizes } from "@/components/sections/Prizes";
 import { LeaderboardSection } from "@/components/sections/LeaderboardSection";
-import { REGISTRATION_FORM_URL } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
 const Marquee = () => (
   <div className="overflow-hidden border-y border-purple-500/20 bg-[#070a14] py-4">
@@ -27,7 +27,7 @@ const Marquee = () => (
   </div>
 );
 
-const CtaBand = () => (
+const CtaBand = () => { const { REGISTRATION_FORM_URL } = useSite(); return (
   <section className="px-4 py-16 sm:px-6 lg:px-8">
     <div className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-cyan-400/30 bg-gradient-to-br from-[#0b1230] to-[#140a2a] p-10 md:p-16">
       <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-cyan-400/20 blur-[100px]" />
@@ -39,7 +39,7 @@ const CtaBand = () => (
       </div>
     </div>
   </section>
-);
+); };
 
 export default function Home() {
   const { hash } = useLocation();

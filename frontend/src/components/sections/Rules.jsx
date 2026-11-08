@@ -1,8 +1,8 @@
 import { ShieldCheck } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
-import { RULES } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
-export const Rules = () => (
+export const Rules = () => { const { RULES } = useSite(); return (
   <section id="rules" className="relative py-20 md:py-32" data-testid="rules-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="rules" eyebrow="// Rules & Guidelines" title="Play fair. Play sharp." />
@@ -28,4 +28,4 @@ export const Rules = () => (
       </div>
     </div>
   </section>
-);
+); };

@@ -3,7 +3,7 @@ import { ExternalLink, FileText, ListChecks, IdCard, Check, X, BadgeIndianRupee 
 import { QRCodeSVG } from "qrcode.react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { EVENTS, TIERS, REGISTRATION_FORM_URL, FEE_NOTE } from "@/data/content";
+import { useSite } from "@/context/SiteContent";
 
 const STEPS = [
   { icon: ListChecks, text: "Choose your pass — Central (all events) or event-wise for Ideaforge / Poster Presentation." },
@@ -11,13 +11,17 @@ const STEPS = [
   { icon: IdCard, text: "Carry your college ID on event day. Updates come via Instagram." },
 ];
 
-const FormButton = ({ testid, className = "btn-gold" }) => (
+const FormButton = ({ testid, className = "btn-gold" }) => {
+  const { REGISTRATION_FORM_URL } = useSite();
+  return (
   <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className={className} data-testid={testid}>
     Open registration form <ExternalLink className="h-4 w-4" />
   </a>
-);
+  );
+};
 
 export default function Register() {
+  const { EVENTS, TIERS, REGISTRATION_FORM_URL, FEE_NOTE } = useSite();
   useEffect(() => { document.title = "Register | DataVerse 2K27"; window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen bg-[#05070E]" data-testid="register-page">
