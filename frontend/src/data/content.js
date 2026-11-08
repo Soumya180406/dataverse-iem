@@ -21,6 +21,7 @@ export const EVENTS = [
   { slug: "poster", name: "Poster Presentation", icon: Presentation, accent: "purple", tag: "Showcase your research & ideas",
     blurb: "Turn your research, analysis or project into one powerful poster and walk the judges through your findings." },
   { slug: "ideaforge", name: "Ideaforge", icon: Lightbulb, accent: "cyan", tag: "Pitch your ideas. Create impact.",
+    template: "/downloads/Ideaforge_PPT_Template_DataVerse2K27.pptx",
     blurb: "Pitch a data-driven solution to a real-world problem. Frame it, model it and defend it in front of the jury." },
   { slug: "games", name: "Games Carnival", icon: Gamepad2, accent: "gold", tag: "Play, compete and earn points!",
     blurb: "A burst of logic, probability and speed games. Play, compete and collect DataPoints through the carnival." },
@@ -98,6 +99,12 @@ export const RULES = [
     "Register only through the official DataVerse 2K27 Google Form.",
     "Fill in your details exactly as on your college ID.",
     "[Refund policy — to be confirmed by the organisers]",
+  ] },
+  { title: "Ideaforge Presentation", items: [
+    "Every Ideaforge participant must use the official DataVerse 2K27 PPT template (download it from the Ideaforge event card).",
+    "Maximum 6 slides: Title, Problem Statement, Proposed Solution, Data & Methodology, Impact & Feasibility, Conclusion.",
+    "Do not remove or change the IEM and UEM logos, the header or the footer.",
+    "Presentations that do not follow the template may be disqualified.",
   ] },
   { title: "Code of Conduct", items: [
     "Respect fellow participants, volunteers, judges and campus property.",

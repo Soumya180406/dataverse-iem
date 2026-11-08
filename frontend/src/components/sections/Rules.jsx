@@ -6,7 +6,7 @@ export const Rules = () => (
   <section id="rules" className="relative py-20 md:py-32" data-testid="rules-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="rules" eyebrow="// Rules & Guidelines" title="Play fair. Play sharp." />
-      <div className="grid gap-6 lg:grid-cols-3">
+      <div className="grid gap-6 md:grid-cols-2">
         {RULES.map((r, i) => (
           <Reveal key={r.title} delay={i * 0.1} className="glass rounded-3xl p-7" >
             <div data-testid={`rules-group-${i}`}>
