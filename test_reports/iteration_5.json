@@ -1,0 +1,29 @@
+{
+  "summary": "Final check before publishing. Backend: 9/9 passed in the new tests/test_iter5_prod_ready.py. It covers the public endpoints, 401 with no token or a bad token, the role matrix, and data surviving a backend restart: a TEST game, participant and score (42) were created, the backend was restarted with supervisorctl, the data was still in GET /api/leaderboard, and it was then deleted. 5/5 passed in tests/test_iter5_role_logic.py, a unit test with Clerk mocked: a verified ADMIN_EMAIL becomes super_admin, an unverified one or a different email does not, and the match ignores case and spaces in a list. ADMIN_EMAIL is set to soumyajitbanerjee2006@gmail.com in backend env. Frontend checked on desktop 1920 and mobile 390. Dates: hero '13–14 Feb 2027 · Sat–Sun', 'IST 09:00', footer '13–14 February 2027', 'Saturday, 13 Feb 2027' / 'Sunday, 14 Feb 2027', FAQ, JSON-LD start 2027-02-13T09:00+05:30. The countdown ticks with the correct remaining time. The .ics download has DTSTART 20270213T033000Z (09:00 IST). Signed out, /admin and /organiser go to /sign-in, which shows Clerk 'Continue with Google'. /sign-up renders. Signing in with ticket test users: super_admin sees the Users tab, admin does not (the session survives a reload), member sees 'Waiting for approval'. Signing out goes back to /sign-in. All 3 download files return 200 with the right MIME type. The 16 images are not broken, there is no horizontal overflow on /, /register, /leaderboard or /sign-in, the mobile menu, gallery lightbox and FAQ accordion work, team names are correct, and the /register Google Form button and QR are present. No console errors. No preview URLs, test emails or passcodes are hardcoded in runtime frontend or backend code.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Browser title", "issues": ["At runtime document.title is 'DataVerse 2K27 | Data Science & Tech Fest at IEM Kolkata'. The '| 13–14 Feb 2027' suffix from index.html is overwritten by the app. Cosmetic only, optional."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_iter5_prod_ready.py", "/app/backend/tests/test_iter5_role_logic.py", "/app/test_reports/pytest/pytest_iter5.xml"],
+  "action_items": [
+    "IMPORTANT test hygiene: /app/backend/tests/test_admin_api.py has test_reset, which calls POST /admin/scores/reset and wipes ALL scores, and test_content, which overwrites site_content 'main' with registration_form_url=https://forms.gle/TEST. When I ran the full suite by mistake they changed the preview DB. I restored it: the DB was empty before testing (iteration_3 had deleted the site_content doc and history was empty), so I deleted the TEST site_content doc and the 73 score_history rows from the test admins. Mark these two tests skip-by-default or make them save and restore state, so nobody runs them against real data.",
+    "Delete or rewrite the obsolete /app/backend/tests/test_leaderboard.py. It targets the old passcode API (/api/organiser/verify, X-Organiser-Key with a hardcoded key) and 10 of its tests now fail by design.",
+    "Make sure the production deploy env also contains ADMIN_EMAIL=soumyajitbanerjee2006@gmail.com. Without it, nobody becomes super_admin.",
+    "Known and non-blocking: sitemap.xml still uses the YOUR-COLLEGE-DOMAIN placeholder. Fix it or remove the file before you submit it to search engines."
+  ],
+  "critical_code_review_comments": [
+    "current_member: a new user is upserted with $setOnInsert. The role is super_admin only when an email matching ADMIN_EMAIL has verification.status=='verified'. If the Clerk lookup fails, _clerk_profile raises, so the request fails and the next one retries; there is no silent default. Correct.",
+    "The env tag (preview/live) plus the IN_ENV filter keep preview test users out of the live Users list and out of the super-admin count. Good.",
+    "The role is saved once. If the owner's very first sign-in used a Google account other than ADMIN_EMAIL, only a super admin can promote it later. Expected behaviour."
+  ],
+  "updated_files": ["/app/backend/tests/test_iter5_prod_ready.py", "/app/backend/tests/test_iter5_role_logic.py"],
+  "success_rate": {"backend": "100% (14/14 new tests; legacy test_leaderboard.py is obsolete)", "frontend": "100%"},
+  "seed_data_creation": "None kept. All TEST games and participants were deleted through the API. The site_content doc and score_history rows created by the legacy suite were removed, so the DB is back to its previous state: 0 games, 0 participants, 0 history, 0 site_content, 3 Clerk test users.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run only the safe files: pytest tests/test_iter5_prod_ready.py tests/test_iter5_role_logic.py -n 0. Do NOT run tests/test_admin_api.py::test_reset or ::test_content against real data. UI login: python tests/mint_tickets.py, then use window.Clerk.client.signIn.create({strategy:'ticket'}) on /sign-in."
+}

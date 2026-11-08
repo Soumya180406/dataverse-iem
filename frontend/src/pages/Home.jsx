@@ -44,7 +44,7 @@ const CtaBand = () => { const { REGISTRATION_FORM_URL } = useSite(); return (
 export default function Home() {
   const { hash } = useLocation();
   useEffect(() => {
-    document.title = "DataVerse 2K27 | Data Science & Tech Fest at IEM Kolkata";
+    document.title = "DataVerse 2K27 | Data Science & Tech Fest at IEM Kolkata | 13–14 Feb 2027";
     if (hash) {
       setTimeout(() => document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth" }), 150);
     }
