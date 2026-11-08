@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { SectionHeading } from "@/components/site/Reveal";
-import { Podium, RankTable, LiveBadge } from "@/components/leaderboard/LeaderboardView";
+import { Podium, RankTable, LiveBadge, showPodium } from "@/components/leaderboard/LeaderboardView";
 import { useLeaderboard } from "@/hooks/useLeaderboard";
 
 export const LeaderboardSection = () => {
   const { items, updated_at } = useLeaderboard();
+  const pod = showPodium(items);
   return (
     <section id="leaderboard" className="relative py-20 md:py-32" data-testid="leaderboard-section">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
@@ -16,8 +17,8 @@ export const LeaderboardSection = () => {
             Full leaderboard <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        {items.length >= 3 && <div className="mb-6"><Podium items={items} /></div>}
-        <RankTable items={items.slice(items.length >= 3 ? 3 : 0, 10)} empty={items.length ? "More ranks will appear here." : undefined} />
+        {pod && <div className="mb-6"><Podium items={items} /></div>}
+        <RankTable items={items.slice(pod ? 3 : 0, 10)} empty={items.length ? "More ranks will appear here." : undefined} />
       </div>
     </section>
   );

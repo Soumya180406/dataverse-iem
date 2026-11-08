@@ -2,10 +2,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Crown, Medal } from "lucide-react";
 
 const PODIUM = [
-  { cls: "border-amber-400/60 bg-amber-400/10 text-amber-300", h: "sm:h-44", order: "sm:order-2" },
-  { cls: "border-slate-300/50 bg-slate-300/10 text-slate-200", h: "sm:h-36", order: "sm:order-1" },
-  { cls: "border-orange-400/50 bg-orange-400/10 text-orange-300", h: "sm:h-32", order: "sm:order-3" },
+  { cls: "border-amber-400/60 bg-amber-400/10 text-amber-300", h: "sm:min-h-44", order: "sm:order-2" },
+  { cls: "border-slate-300/50 bg-slate-300/10 text-slate-200", h: "sm:min-h-36", order: "sm:order-1" },
+  { cls: "border-orange-400/50 bg-orange-400/10 text-orange-300", h: "sm:min-h-32", order: "sm:order-3" },
 ];
+
+export const showPodium = (items) => items.length >= 3 && items[2].points > 0;
 
 export const Podium = ({ items }) => (
   <div className="grid gap-4 sm:grid-cols-3 sm:items-end" data-testid="leaderboard-podium">

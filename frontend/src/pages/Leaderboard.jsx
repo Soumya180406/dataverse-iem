@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
-import { Podium, RankTable, LiveBadge } from "@/components/leaderboard/LeaderboardView";
+import { Podium, RankTable, LiveBadge, showPodium } from "@/components/leaderboard/LeaderboardView";
 import { useLeaderboard } from "@/hooks/useLeaderboard";
 
 export default function Leaderboard() {
@@ -25,7 +25,7 @@ export default function Leaderboard() {
             <LiveBadge updatedAt={updated_at} />
             <span className="text-sm text-slate-400" data-testid="leaderboard-total">{total} participants</span>
           </div>
-          {items.length >= 3 && !q && <div className="mt-8"><Podium items={items} /></div>}
+          {showPodium(items) && !q && <div className="mt-8"><Podium items={items} /></div>}
           <div className="relative mt-8">
             <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-500" />
             <input className="field !pl-10" placeholder="Find your name or college" value={q} onChange={(e) => setQ(e.target.value)} data-testid="leaderboard-search" />

@@ -9,7 +9,7 @@ export const Logo = () => (
     <span className="relative grid h-9 w-9 place-items-center rounded-xl border border-cyan-400/40 bg-cyan-400/10 font-mono text-sm font-bold text-cyan-300 transition-[box-shadow] duration-300 group-hover:shadow-[0_0_20px_rgba(0,240,255,0.5)]">
       DV
     </span>
-    <span className="font-display text-lg font-extrabold tracking-tight text-white">
+    <span className="whitespace-nowrap font-display text-lg font-extrabold tracking-tight text-white">
       DataVerse <span className="text-amber-300">2K27</span>
     </span>
   </Link>
@@ -43,10 +43,10 @@ export const Navbar = () => {
     <header className={`no-print fixed inset-x-0 top-0 z-50 transition-[background-color,border-color] duration-300 ${scrolled ? "border-b border-purple-500/20 bg-[#05070E]/85 backdrop-blur-xl" : "border-b border-transparent"}`}>
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 md:h-20">
         <Logo />
-        <div className="hidden items-center gap-1 lg:flex">
+        <div className="hidden items-center gap-0.5 lg:flex">
           {NAV.map((n) => (
             <button key={n.id} onClick={() => go(n.id)} data-testid={`nav-link-${n.id}`}
-              className="rounded-full px-3 py-2 text-sm text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-cyan-300">
+              className="rounded-full px-2 py-2 text-sm text-slate-300 transition-colors duration-200 hover:bg-white/5 hover:text-cyan-300 xl:px-3">
               {n.label}
             </button>
           ))}

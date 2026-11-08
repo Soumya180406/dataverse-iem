@@ -56,7 +56,7 @@ MAX_FAILS, WINDOW = 10, 900
 
 def _ip(request: Request) -> str:
     fwd = request.headers.get("x-forwarded-for", "")
-    return fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else "")
+    return fwd.split(",")[-1].strip() if fwd else (request.client.host if request.client else "")
 
 
 def require_organiser(request: Request, x_organiser_key: str = Header(default="")) -> None:
@@ -145,7 +145,8 @@ async def root():
 
 @api_router.get("/leaderboard")
 async def leaderboard():
-    docs = await db.leaderboard.find({}, {"_id": 0, "key": 0}).sort([("points", -1), ("name", 1)]).to_list(5000)
+    docs = await db.leaderboard.find({}, {"_id": 0, "key": 0}).sort([("points", -1), ("name", 1)]) \
+        .collation({"locale": "en", "strength": 2}).to_list(5000)
     items, rank, prev = [], 0, None
     for i, d in enumerate(docs):
         if d.get("points", 0) != prev:
@@ -171,6 +172,8 @@ async def add_participant(body: ParticipantIn, _: None = Depends(require_organis
 @api_router.post("/leaderboard/bulk")
 async def bulk_add(body: BulkIn, _: None = Depends(require_organiser)):
     lines = [ln for ln in body.text.splitlines() if ln.strip()]
+    if lines and re.match(r"^\s*(full\s*)?name\b", lines[0], re.I):
+        lines = lines[1:]
     if len(lines) > 3000:
         raise HTTPException(422, "Paste at most 3000 rows at a time")
     added, skipped, invalid = 0, 0, []

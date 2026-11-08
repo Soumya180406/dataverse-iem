@@ -25,6 +25,12 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - New Prizes section (₹24,000+ pool, mystery auction, highlights); partner logos cropped from poster (IEM, Lions Club, Rotary, IIC, SDS, UEM)
 - Contact: dataverse2k27@gmail.com, 6291540402, 8777681364; scan-to-register QR of Google Form
 
+## Update (2026-11-08) — Live leaderboard
+- Public live DataPoints leaderboard: home section #leaderboard (top 10 + podium) and /leaderboard page (search), auto-refresh every 5s
+- Organiser console /organiser protected by ORGANISER_PASSCODE (backend .env, header X-Organiser-Key, 10-fail/15-min lockout); user chose no login
+- Add one participant, paste list from Google Form sheet (Name<TAB>College or Name, College; header row + duplicates skipped), +/- buttons, set exact score, remove
+- Mongo collection `leaderboard` {id, name, college, points, key, updated_at}
+
 ## Placeholders to replace
 Team names, contact email/phones, venue rooms, sponsor logos, refund policy line, sitemap domain.
 

@@ -1,0 +1,39 @@
+{
+  "summary": "Tested the Live Leaderboard feature end to end. Backend: 11 of 11 pytest tests pass: public GET sorted with tied ranks, 401 without/with wrong X-Organiser-Key on all write endpoints plus verify, add/409 duplicate (case-insensitive), validation, bulk add (dupes skipped, invalid rows reported), delta/set with the 0 floor, 404s and delete. Frontend: the passcode gate (wrong code shows a toast, the right code unlocks), add one, bulk paste with toasts, +50/+10/-10 buttons, set exact score, remove with confirm and lock all work. The public /leaderboard page picked up an organiser score change in about 5s without a reload. Search hides the podium and filters rows. The home #leaderboard nav link scrolls correctly. No horizontal overflow at 390px (/leaderboard, /organiser) or 1024px (navbar). One real UI bug: text in podium cards overlaps at sm+ widths.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "POST /api/leaderboard/bulk", "issue": "A header row copied from Google Sheets (e.g. 'Name<TAB>College' or 'Full Name<TAB>College Name') passes validation and gets added as a participant. Consider skipping a first row whose name matches common header words."},
+      {"endpoint": "require_organiser", "issue": "The rate limiter keys on the first X-Forwarded-For value, which the client can spoof. An attacker can rotate that header to get around the 10-failure lockout. Use the last trusted proxy hop or request.client instead."},
+      {"endpoint": "GET /api/leaderboard", "issue": "The name tiebreak sort is case-sensitive (Mongo binary collation), so 'aman' sorts after 'Zoya'. updated_at also ignores deletions. Low impact."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "LeaderboardView Podium", "issue": "At sm+ widths (seen at 1024 and 1920) podium cards have fixed heights (sm:h-44/h-36/h-32: measured 174/142/126px). The content needs about 156px. Because of flex-col justify-end, the name and college <p> elements shrink, so the name overlaps the college line. Rank-3 card name is unreadable (strikethrough look); rank-2 name overlaps 'IEM'. Fix: use sm:min-h-44/36/32 instead of sm:h-*, or add shrink-0 to the children.", "selector": "[data-testid='podium-2'], [data-testid='podium-3']", "priority": "HIGH"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Navbar @1024px", "issues": ["No overflow, but the logo wraps to two lines ('DataVerse' / '2K27') and the Register button sits about 6px from the right edge, which feels cramped. Consider smaller nav gaps at the lg breakpoint."]},
+      {"screen": "Podium with ties", "issues": ["When several people share a rank (e.g. everyone at 0), the podium still shows silver/bronze styling for two cards that both say 'Rank 2'. Consider hiding the podium until the top scores are greater than 0."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_leaderboard.py", "/app/test_reports/pytest/pytest_leaderboard.xml"],
+  "action_items": [
+    "Fix podium card text overlap in LeaderboardView.jsx (replace sm:h-* with sm:min-h-*, or add shrink-0 to the text <p>s)",
+    "Optional: skip a Google Sheet header row in bulk paste",
+    "Optional: harden the rate limiter IP source against a spoofed X-Forwarded-For"
+  ],
+  "critical_code_review_comments": [
+    "server.py: require_organiser trusts the client-supplied first X-Forwarded-For entry, so the brute-force limiter can be bypassed",
+    "Organiser.jsx: only 401 auto-locks; 429 (rate limited) just shows a toast, which is acceptable",
+    "ScoreManager set input: a decimal like 1.5 gives a 422 toast from the backend, which is acceptable; could use step=1"
+  ],
+  "updated_files": ["/app/backend/tests/test_leaderboard.py"],
+  "success_rate": {"backend": "100%", "frontend": "95% (podium layout bug)"},
+  "test_credentials": "Organiser passcode DV27-2F1ACEA2 (from /app/memory/test_credentials.md)",
+  "seed_data_creation": "All TEST participants created during testing were deleted, along with the pre-existing 'TEST Riya Sen' and 'TEST Arjun Roy' as requested. The leaderboard collection is now empty.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run pytest /app/backend/tests/test_leaderboard.py (it cleans up after itself). It sends 6 failed-auth requests (5 missing-key plus 1 wrong-key), and a correct call resets the limiter counter. Live poll interval is 5s on public pages and 8s on /organiser. After the podium fix, re-check the podium at 1024/1920 with 3+ participants."
+}
