@@ -42,7 +42,10 @@ def logos(s, right, y, h, gap):
         x = right - (2 - i) * w - (1 - i) * gap
         chip = rect(s, x, y, w, h, WHITE, MSO_SHAPE.ROUNDED_RECTANGLE); chip.adjustments[0] = 0.1
         pad = int(h * 0.07)
-        s.shapes.add_picture(f"{IMG}/logo_{k}.png", x + pad, y + pad, height=h - 2 * pad)
+        from PIL import Image
+        iw, ih = Image.open(f"{IMG}/logo_{k}.png").size
+        ph = h - 2 * pad
+        s.shapes.add_picture(f"{IMG}/logo_{k}.png", x + (w - int(ph * iw / ih)) // 2, y + pad, height=ph)
 
 
 # ---------- A1 portrait poster template ----------

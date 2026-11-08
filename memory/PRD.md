@@ -40,6 +40,13 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - Download buttons + mandatory note on Poster Presentation card; new "Poster Presentation" rules group
 - Poster size A1 chosen by agent (user didn't specify) — confirm with organisers
 
+## Update (2026-11-08) — Sharper logos
+- logo_iem.png / logo_uem.png replaced with official files from iem.edu.in (IEM-Final-Logo-02-1.png) and uem.edu.in (cropped-UEM_New_Logo2016-1.webp); templates regenerated
+
+## Update (2026-11-08) — Team & sponsors
+- Team: Faculty Co-ordinators with 2 user-supplied photos (names still [Faculty Name]); Student Leads Snigdha Saha, Soumyajit Banerjee; all role titles removed
+- Empty sponsor slots removed
+
 ## Placeholders to replace
 Team names, contact email/phones, venue rooms, sponsor logos, refund policy line, sitemap domain.
 

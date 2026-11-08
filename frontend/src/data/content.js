@@ -135,19 +135,15 @@ export const SPONSORS = {
     { src: "/images/logo_sds.png", name: "Society for Data Science, IEM Student Chapter" },
     { src: "/images/logo_uem.png", name: "University of Engineering & Management" },
   ],
-  slots: ["Title Sponsor", "Co-Sponsor", "Tech Partner", "Media Partner"],
 };
 
-export const TEAM = [
-  { name: "[Faculty Name]", role: "Faculty Convener", group: "Faculty" },
-  { name: "[Faculty Name]", role: "Faculty Coordinator", group: "Faculty" },
-  { name: "[Student Name]", role: "Student Coordinator", group: "Core" },
-  { name: "[Student Name]", role: "Technical Lead", group: "Core" },
-  { name: "[Student Name]", role: "Events Lead", group: "Core" },
-  { name: "[Student Name]", role: "Sponsorship & PR Lead", group: "Core" },
-  { name: "[Student Name]", role: "Design & Media Lead", group: "Core" },
-  { name: "[Student Name]", role: "Logistics Lead", group: "Core" },
-];
+export const TEAM = {
+  faculty: [
+    { name: "[Faculty Name]", photo: "/images/faculty_1.jpg" },
+    { name: "[Faculty Name]", photo: "/images/faculty_2.jpg" },
+  ],
+  students: [{ name: "Snigdha Saha" }, { name: "Soumyajit Banerjee" }],
+};
 
 export const GALLERY = [
   { src: "/images/img7.jpg", alt: "Students collaborating on laptops", span: "md:col-span-2 md:row-span-2" },

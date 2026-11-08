@@ -23,16 +23,6 @@ export const Sponsors = () => (
           </Reveal>
         ))}
       </div>
-      <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-        {SPONSORS.slots.map((s, i) => (
-          <div key={s} className="grid h-28 place-items-center rounded-2xl border border-dashed border-slate-700 text-center transition-[border-color] duration-300 hover:border-cyan-400/50" data-testid={`sponsor-slot-${i}`}>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-widest text-slate-500">{s}</p>
-              <p className="mt-1 text-sm text-slate-400">[Your logo here]</p>
-            </div>
-          </div>
-        ))}
-      </div>
       <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-3xl border border-purple-500/30 bg-gradient-to-r from-purple-600/15 to-cyan-500/10 p-7 md:flex-row md:items-center">
         <div className="flex items-center gap-4">
           <Handshake className="h-8 w-8 text-cyan-300" />

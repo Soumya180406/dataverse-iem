@@ -46,7 +46,10 @@ def logos(s, y=Inches(0.3), h=Inches(0.85)):
     for i, k in enumerate(["iem", "uem"]):
         x = W - Inches(0.4) - (2 - i) * w - (1 - i) * Inches(0.15)
         rect(s, x, y, w, h, WHITE, MSO_SHAPE.ROUNDED_RECTANGLE).adjustments[0] = 0.12
-        s.shapes.add_picture(f"{IMG}/logo_{k}.png", x + Inches(0.08), y + Inches(0.06), height=h - Inches(0.12))
+        from PIL import Image
+        iw, ih = Image.open(f"{IMG}/logo_{k}.png").size
+        ph = h - Inches(0.12)
+        s.shapes.add_picture(f"{IMG}/logo_{k}.png", x + (w - int(ph * iw / ih)) // 2, y + Inches(0.06), height=ph)
 
 
 def base(n):
