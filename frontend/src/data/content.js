@@ -1,4 +1,4 @@
-import { Lightbulb, Presentation, Map, Gamepad2, GraduationCap, Gavel, BarChart3, Users, BookOpen, Star, Trophy, Gift, Award } from "lucide-react";
+import { Lightbulb, Presentation, Map, Gamepad2, GraduationCap, Gavel, BarChart3, Users, BookOpen, Star, Trophy, Gift, Award, ClipboardCheck, Mic, Utensils } from "lucide-react";
 
 export const INSTAGRAM_URL = "https://www.instagram.com/dataverse.2k27/";
 export const INSTAGRAM_HANDLE = "@dataverse.2k27";
@@ -65,19 +65,21 @@ export const TIERS = [
 ];
 
 export const SCHEDULE = {
-  day1: { label: "Day 01", date: "13 Feb 2027", items: [
-    { time: "09:30", title: "Reporting & Check-in", place: "Registration Desk", kind: "General" },
-    { time: "10:00", title: "Inauguration Ceremony", place: "[Auditorium]", kind: "General" },
-    { time: "11:00", title: "Ideaforge — Round 1", place: "[Venue TBA]", kind: "Ideaforge" },
-    { time: "11:30", title: "Poster Presentation", place: "[Venue TBA]", kind: "Poster Presentation" },
-    { time: "14:00", title: "Workshop Session", place: "[Lab TBA]", kind: "Workshops" },
-    { time: "15:30", title: "Games Carnival", place: "[Venue TBA]", kind: "Games Carnival" },
+  day1: { label: "Day 01", date: "Saturday, 13 Feb 2027", theme: "blue", items: [
+    { start: "9:00 AM", end: "9:30 AM", title: "Registration", sub: "& Welcome Kit Distribution", icon: ClipboardCheck },
+    { start: "9:30 AM", end: "10:00 AM", title: "Opening Ceremony", icon: Mic },
+    { start: "10:00 AM", end: "11:00 AM", title: "Workshop 1", sub: "Industry Expert Session", icon: GraduationCap },
+    { start: "11:10 AM", end: "1:30 PM", title: "Poster Presentation", sub: "Competition", icon: Presentation },
+    { start: "1:30 PM", end: "2:30 PM", title: "Lunch Break", icon: Utensils },
+    { start: "2:30 PM", end: "4:30 PM", title: "Data Treasure Hunt", icon: Map },
   ] },
-  day2: { label: "Day 02", date: "14 Feb 2027", items: [
-    { time: "10:00", title: "Data Treasure Hunt", place: "Across Campus", kind: "Data Treasure Hunt" },
-    { time: "11:30", title: "Ideaforge — Finals", place: "[Venue TBA]", kind: "Ideaforge" },
-    { time: "14:00", title: "Mega Auction", place: "[Venue TBA]", kind: "Mega Auction" },
-    { time: "16:30", title: "Prize Distribution & Closing", place: "[Auditorium]", kind: "General" },
+  day2: { label: "Day 02", date: "Sunday, 14 Feb 2027", theme: "pink", items: [
+    { start: "9:30 AM", end: "10:30 AM", title: "Ideaforge", sub: "Idea Pitch Competition", icon: Lightbulb },
+    { start: "10:30 AM", end: "1:30 PM", title: "Games Carnival", sub: "10 Exciting Games", icon: Gamepad2 },
+    { start: "1:30 PM", end: "2:30 PM", title: "Lunch Break", icon: Utensils },
+    { start: "2:30 PM", end: "4:00 PM", title: "Workshop 2", sub: "Emerging Technologies Session", icon: GraduationCap },
+    { start: "4:00 PM", end: "4:30 PM", title: "Prize Distribution Ceremony", icon: Trophy },
+    { start: "4:30 PM", end: "5:30 PM", title: "Grand Auction", sub: "Mystery Prizes Await!", icon: Gavel },
   ] },
 };
 

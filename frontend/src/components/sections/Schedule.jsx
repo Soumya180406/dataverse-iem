@@ -1,44 +1,49 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MapPin } from "lucide-react";
-import { SectionHeading } from "@/components/site/Reveal";
+import { Star } from "lucide-react";
+import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { SCHEDULE } from "@/data/content";
 
-const Timeline = ({ items }) => (
-  <ol className="relative ml-3 border-l border-purple-500/30 md:ml-6">
-    {items.map((it, i) => (
-      <li key={i} className="group relative mb-6 pl-8 md:pl-12" data-testid={`schedule-item-${i}`}>
-        <span className="absolute -left-[7px] top-6 h-3.5 w-3.5 rounded-full border-2 border-cyan-300 bg-[#05070E] transition-[box-shadow] duration-300 group-hover:shadow-[0_0_16px_rgba(0,240,255,0.8)]" />
-        <div className="glass flex flex-col gap-3 rounded-2xl p-5 transition-[border-color] duration-300 group-hover:border-cyan-400/40 md:flex-row md:items-center md:gap-8">
-          <span className="font-mono text-2xl font-bold text-amber-300 md:w-24">{it.time}</span>
-          <div className="flex-1">
-            <h3 className="text-lg font-semibold text-white">{it.title}</h3>
-            <p className="mt-1 flex items-center gap-1.5 text-sm text-slate-400"><MapPin className="h-3.5 w-3.5" /> {it.place}</p>
-          </div>
-          <span className="w-fit rounded-full border border-purple-400/30 bg-purple-500/10 px-3 py-1 font-mono text-xs text-purple-200">{it.kind}</span>
-        </div>
-      </li>
-    ))}
-  </ol>
-);
+const THEME = {
+  blue: { panel: "border-sky-400/40 shadow-[0_0_40px_rgba(56,189,248,0.15)]", pill: "bg-gradient-to-br from-blue-600 to-sky-500 shadow-[0_0_18px_rgba(56,189,248,0.45)]", line: "border-sky-400/40", dot: "bg-sky-300 shadow-[0_0_10px_rgba(125,211,252,0.9)]", icon: "text-sky-300", label: "text-sky-300" },
+  pink: { panel: "border-pink-400/40 shadow-[0_0_40px_rgba(236,72,153,0.15)]", pill: "bg-gradient-to-br from-fuchsia-700 to-pink-500 shadow-[0_0_18px_rgba(236,72,153,0.45)]", line: "border-pink-400/40", dot: "bg-pink-300 shadow-[0_0_10px_rgba(249,168,212,0.9)]", icon: "text-pink-300", label: "text-pink-300" },
+};
+
+const DayPanel = ({ id, day }) => {
+  const t = THEME[day.theme];
+  return (
+    <div className={`rounded-3xl border bg-[#070a16]/90 p-5 sm:p-7 ${t.panel}`} data-testid={`schedule-${id}`}>
+      <p className={`font-mono text-xs uppercase tracking-[0.3em] ${t.label}`}>{day.label}</p>
+      <h3 className="mt-1 font-display text-2xl font-bold text-white">{day.date}</h3>
+      <ol className="mt-6 space-y-3">
+        {day.items.map((it, i) => (
+          <li key={i} className={`flex items-center gap-3 border-b pb-3 last:border-b-0 sm:gap-5 ${t.line}`} data-testid={`schedule-${id}-item-${i}`}>
+            <div className={`w-[92px] shrink-0 rounded-xl px-2 py-2 text-center font-mono text-xs font-bold leading-tight text-white sm:w-[112px] sm:text-sm ${t.pill}`}>
+              {it.start}<br />– {it.end}
+            </div>
+            <span className={`hidden h-2.5 w-2.5 shrink-0 rounded-full sm:block ${t.dot}`} />
+            <it.icon className={`h-7 w-7 shrink-0 ${t.icon}`} strokeWidth={1.5} />
+            <div className="min-w-0">
+              <p className="font-display text-base font-bold uppercase tracking-wide text-white sm:text-lg">{it.title}</p>
+              {it.sub && <p className="text-xs uppercase tracking-wide text-slate-400 sm:text-sm">{it.sub}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+};
 
 export const Schedule = () => (
   <section id="schedule" className="relative py-20 md:py-32" data-testid="schedule-section">
-    <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-      <SectionHeading id="schedule" eyebrow="// Event Schedule" title="Two days, minute by minute"
-        sub="Tentative timeline — final timings and rooms will be announced on Instagram." />
-      <Tabs defaultValue="day1">
-        <TabsList className="mb-10 grid h-auto w-full grid-cols-2 gap-2 rounded-full border border-slate-700 bg-slate-900/70 p-1.5 sm:inline-grid sm:w-auto">
-          {Object.entries(SCHEDULE).map(([k, d]) => (
-            <TabsTrigger key={k} value={k} data-testid={`schedule-tab-${k}`}
-              className="rounded-full px-3 py-2 font-mono text-xs uppercase tracking-wider text-slate-400 data-[state=active]:bg-cyan-400 data-[state=active]:text-slate-950 sm:px-5 sm:tracking-widest">
-              {d.label}<span className="hidden sm:inline">&nbsp;· {d.date}</span>
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {Object.entries(SCHEDULE).map(([k, d]) => (
-          <TabsContent key={k} value={k}><Timeline items={d.items} /></TabsContent>
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <SectionHeading id="schedule" eyebrow="// Event Schedule" title="Two days, minute by minute" />
+      <div className="grid gap-6 lg:grid-cols-2">
+        {Object.entries(SCHEDULE).map(([k, d], i) => (
+          <Reveal key={k} delay={i * 0.1}><DayPanel id={k} day={d} /></Reveal>
         ))}
-      </Tabs>
+      </div>
+      <p className="mt-8 flex items-center justify-center gap-2 font-mono text-sm font-bold uppercase tracking-[0.25em] text-sky-300" data-testid="schedule-tagline">
+        <Star className="h-4 w-4 fill-sky-300" /> Learn. Compete. Win. Repeat.
+      </p>
     </div>
   </section>
 );
