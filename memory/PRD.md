@@ -44,7 +44,7 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - logo_iem.png / logo_uem.png replaced with official files from iem.edu.in (IEM-Final-Logo-02-1.png) and uem.edu.in (cropped-UEM_New_Logo2016-1.webp); templates regenerated
 
 ## Update (2026-11-08) — Team & sponsors
-- Team: Faculty Co-ordinators with 2 user-supplied photos (names still [Faculty Name]); Student Leads Snigdha Saha, Soumyajit Banerjee; all role titles removed
+- Team: Faculty Co-ordinators with 2 user-supplied photos (Dr. Jeet Sen = faculty_1 blazer photo, Dr. Santanu Das = faculty_2); Student Leads Snigdha Saha, Soumyajit Banerjee; all role titles removed
 - Empty sponsor slots removed
 
 ## Placeholders to replace

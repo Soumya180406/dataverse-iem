@@ -139,8 +139,8 @@ export const SPONSORS = {
 
 export const TEAM = {
   faculty: [
-    { name: "[Faculty Name]", photo: "/images/faculty_1.jpg" },
-    { name: "[Faculty Name]", photo: "/images/faculty_2.jpg" },
+    { name: "Dr. Jeet Sen", photo: "/images/faculty_1.jpg" },
+    { name: "Dr. Santanu Das", photo: "/images/faculty_2.jpg" },
   ],
   students: [{ name: "Snigdha Saha" }, { name: "Soumyajit Banerjee" }],
 };
