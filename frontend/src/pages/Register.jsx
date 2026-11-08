@@ -17,7 +17,7 @@ const FormButton = ({ testid, className = "btn-gold" }) => (
 );
 
 export default function Register() {
-  useEffect(() => { document.title = "Register | DataVerse 2K27"; }, []);
+  useEffect(() => { document.title = "Register | DataVerse 2K27"; window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen bg-[#05070E]" data-testid="register-page">
       <Navbar />

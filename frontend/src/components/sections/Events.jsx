@@ -17,7 +17,7 @@ const EventCard = ({ e, i }) => (
       <p className="mt-6 font-mono text-xs uppercase tracking-[0.25em] text-slate-500">{e.tag}</p>
       <h3 className="mt-2 text-2xl font-bold text-white">{e.name}</h3>
       <p className="mt-3 text-sm leading-relaxed text-slate-400">{e.blurb}</p>
-      <Link to={`/register?event=${encodeURIComponent(e.name)}`} className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white" data-testid={`event-register-${e.slug}`}>
+      <Link to="/register" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white" data-testid={`event-register-${e.slug}`}>
         Register for this <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
       </Link>
     </div>

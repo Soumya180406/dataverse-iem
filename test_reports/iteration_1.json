@@ -1,0 +1,50 @@
+{
+  "summary": "Frontend-only E2E test of DataVerse 2K27 landing site (desktop 1920, tablet 768, mobile 390) using Playwright. 10 of 11 requested features pass fully. One responsive bug: at 390px the Schedule tab list is 430px wide, so the page scrolls sideways (scrollWidth 446 vs 390) and the Day 02 tab is cut off. A few minor issues are listed below. No console or page errors.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Schedule TabsList (mobile 390px)", "issue": "The tab list is 430px wide (two 204px tabs plus padding) and does not wrap or shrink. The page scrolls 56px sideways on mobile and the 'DAY 02 · 14 FEB 2027' tab is clipped. Root cause found by hiding sections one at a time: only hiding #schedule brings scrollWidth back to 390. Fix: give the TabsList w-full or flex-wrap, use shorter labels on mobile (e.g. hide the date below the sm breakpoint), or use smaller px/tracking.", "selector": "#schedule [role=tablist], [data-testid=schedule-tab-day2]", "priority": "HIGH"},
+      {"component": "Route change to /register", "issue": "There is no scroll-to-top when the route changes. Clicking event-register-{slug} in the middle of the home page opens /register already scrolled down (scrollY=167), so the 'Enter the verse' heading is off screen.", "selector": "[data-testid^=event-register-]", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [
+      {"flow": "Event card -> /register?event=Name", "issue": "Register.jsx ignores the ?event query param, so the chosen event is not highlighted or shown. Either use the param (e.g. highlight that event chip) or drop it from the link.", "affected_selectors": ["[data-testid^=event-register-]"]}
+    ],
+    "design_issues": [
+      {"screen": "Rules section", "issues": ["The rules group title 'Registration & Payment' (content.js RULES[1].title) still uses the word 'Payment'. The user asked for no payment references. Suggest renaming it to 'Registration & Fees'."]},
+      {"screen": "Hero desktop", "issues": ["The scanline overlay strip leaves a visible horizontal band edge around y≈290px across the hero (cosmetic)."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Fix horizontal overflow of the Schedule tabs on mobile (Schedule.jsx TabsList: make it full width and wrap, or shorten the labels)",
+    "Add a ScrollToTop on route change (useEffect on pathname in App.js, skipping when there is a hash)",
+    "Rename the 'Registration & Payment' rules title to remove 'Payment'",
+    "Either use or remove the ?event= query param on the event register links"
+  ],
+  "critical_code_review_comments": [
+    "src/lib/api.js still exports an unused axios client and errMsg helper (left over from the old in-app form). Only EVENT_START is used. Move EVENT_START to content.js and remove the dead code.",
+    "The Toaster (sonner) is mounted in App.js but nothing triggers a toast any more, so it is dead UI.",
+    "Navbar uses the 'no-print' class, which is left over from the ticket-printing feature (harmless)."
+  ],
+  "passed": [
+    "All 10 section ids are present; no console or page errors",
+    "Countdown ticks (secs 40 -> 37 over about 2s); values show d/h/m/s to 13 Feb 2027 09:30 IST",
+    "Desktop nav-link-{id} smooth-scrolls each section to the top and updates the URL hash; from /register, nav-link-faq goes to /#faq and scrolls correctly",
+    "Mobile sheet opens via nav-mobile-menu-btn; mobile-nav-events/faq/contact close the sheet and scroll",
+    "schedule-tab-day1 and schedule-tab-day2 switch content correctly",
+    "faq-trigger-1 expands (data-state=open, answer visible)",
+    "All 8 images load (none broken); gallery-item-2 opens gallery-lightbox with a loaded image; Esc closes it",
+    "hero-register-btn, nav-register-btn and event-register-auction go to /register",
+    "fee-single shows ₹350, fee-double ₹399, fee-central ₹449",
+    "register-google-form-btn and cta-google-form-btn have the exact Form URL, target=_blank and rel=noopener noreferrer (form not submitted)",
+    "footer-instagram-link and contact-instagram-card point to https://www.instagram.com/dataverse.2k27/",
+    "No 'my pass', 'ticket', 'admin', 'QR' or 'UPI' text in the UI (only the 'Payment' rules title above)",
+    "No horizontal scroll on desktop 1920, on tablet 768, or on /register at 390"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (skipped)", "frontend": "91%"},
+  "seed_data_creation": "None",
+  "retest_needed": true,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Static frontend, with the backend health endpoint only. Check the mobile overflow with: document.documentElement.scrollWidth > innerWidth at 390px (before the fix it was 446, caused by #schedule [role=tablist]). Use '#schedule [role=tabpanel][data-state=active]' to read the active tab content. Do not submit the Google Form."
+}

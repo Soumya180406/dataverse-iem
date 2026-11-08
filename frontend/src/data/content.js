@@ -60,7 +60,7 @@ export const RULES = [
     "Report at the registration desk at least 30 minutes before your event.",
     "Decisions of the judges and organising committee are final.",
   ] },
-  { title: "Registration & Payment", items: [
+  { title: "Registration & Fees", items: [
     "Fees: Single Event ₹350, Double Event ₹399, Central Registration (all events) ₹449.",
     "Register only through the official DataVerse 2K27 Google Form.",
     "Fill in your details exactly as on your college ID.",

@@ -27,11 +27,11 @@ export const Schedule = () => (
       <SectionHeading id="schedule" eyebrow="// Event Schedule" title="Two days, minute by minute"
         sub="Tentative timeline — final timings and rooms will be announced on Instagram." />
       <Tabs defaultValue="day1">
-        <TabsList className="mb-10 h-auto gap-2 rounded-full border border-slate-700 bg-slate-900/70 p-1.5">
+        <TabsList className="mb-10 grid h-auto w-full grid-cols-2 gap-2 rounded-full border border-slate-700 bg-slate-900/70 p-1.5 sm:inline-grid sm:w-auto">
           {Object.entries(SCHEDULE).map(([k, d]) => (
             <TabsTrigger key={k} value={k} data-testid={`schedule-tab-${k}`}
-              className="rounded-full px-5 py-2 font-mono text-xs uppercase tracking-widest text-slate-400 data-[state=active]:bg-cyan-400 data-[state=active]:text-slate-950">
-              {d.label} · {d.date}
+              className="rounded-full px-3 py-2 font-mono text-xs uppercase tracking-wider text-slate-400 data-[state=active]:bg-cyan-400 data-[state=active]:text-slate-950 sm:px-5 sm:tracking-widest">
+              {d.label}<span className="hidden sm:inline">&nbsp;· {d.date}</span>
             </TabsTrigger>
           ))}
         </TabsList>

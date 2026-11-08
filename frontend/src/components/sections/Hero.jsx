@@ -15,7 +15,6 @@ export const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-[#05070E]/60 via-[#05070E]/80 to-[#05070E]" />
       <div className="cyber-grid absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
       <DataNetwork />
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cyan-400/10 to-transparent scanline" />
       <div className="absolute -left-32 top-1/4 h-96 w-96 rounded-full bg-purple-600/25 blur-[120px]" />
       <div className="absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-cyan-500/20 blur-[120px]" />
 
