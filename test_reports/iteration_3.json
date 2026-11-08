@@ -1,0 +1,41 @@
+{
+  "summary": "Iteration 3: Tested the Clerk-based /admin dashboard and the public leaderboard end to end. Backend: 24 pytest cases run against the public URL with real Clerk session JWTs for super_admin, admin and member. 23 passed. 1 failed: PUT /api/admin/games/{id} accepts a name another game already uses. Frontend (Playwright with Clerk ticket sign-in): signed-out visitors are sent to /sign-in, which shows the Google button. Member sees admin-access-denied. Admin gets 5 tabs and no Users tab; super_admin also gets the Users tab. Refreshing keeps the session and signing out returns to /sign-in. Adding games, adding solo and team participants, editing a participant, typing a score and pressing Enter (total updates and rows reorder), the over-max error toast, delete participant and delete game behind confirm dialogs (cancel and confirm both checked), Reset scores behind a confirm, CSV and XLSX downloads, and History rows with the admin name all work. The public /leaderboard picks up changes within about 6s without a reload and shows per-game chips and the gold/silver/bronze podium. The content editor works: FAQ, contact email and event tag changes appear on the home page. Regression checks pass: home #leaderboard chips, the add-to-calendar .ics download, the template and guide downloads (200), the /register Google Form link, and no horizontal overflow at 390px on / and /leaderboard.",
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {"endpoint": "PUT /api/admin/games/{gid}", "issue": "No duplicate-name check on update: renaming a game to an existing game's name returns 200 (POST correctly returns 409). Fix: before update, look for another game with the same name (case-insensitive) and a different id; return 409 if found."},
+      {"endpoint": "PUT /api/admin/games/{gid}", "issue": "Lowering max_score does not check or clamp scores already above the new max, so totals can exceed what the games allow."},
+      {"endpoint": "PUT /api/admin/participants/{pid}/scores/{gid}", "issue": "If the participant is deleted between the find_one and the find_one_and_update, p is None and p['name'] raises a 500. Add a None check that returns 404."}
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "ScoresTab", "issue": "ScoresTab gets its games from board.games (GET /api/leaderboard), which only has id and name, not max_score. As a result: the column header shows 'max' with no number; client-side validation never runs because n > undefined is false; and the input's max attribute is undefined. The server still rejects the bad score with 422 and a toast. Fix: pass the games from /admin/games (AdminPage's games state) to ScoresTab, or include max_score in the public leaderboard games.", "selector": "[data-testid=scores-table] thead", "priority": "MEDIUM"}
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Public leaderboard (all totals 0 after reset)", "issues": ["Everyone ties at rank #1 and every row gets the gold highlight. Consider skipping medal styling when total is 0."]}
+    ]
+  },
+  "test_report_links": ["/app/backend/tests/test_admin_api.py", "/app/backend/tests/conftest.py", "/app/backend/tests/mint_tickets.py", "/app/test_reports/pytest/pytest_admin.xml"],
+  "action_items": [
+    "Add a 409 duplicate-name check to PUT /api/admin/games/{gid}",
+    "ScoresTab: use the games list that includes max_score (from /admin/games) so the 'max N' header and client-side validation work",
+    "Handle the None participant in set_score (return 404)",
+    "Optional: when max_score is lowered, check or clamp existing scores above the new max",
+    "Optional: ContentTab merges saved content over the defaults shallowly ({...defaultEditable(), ...ov}). If saved content holds only part of a nested object (e.g. contact.email alone), the editor hides the other default subfields (phones, address). Deep-merge them instead.",
+    "Remove or update the obsolete /app/backend/tests/test_leaderboard.py. It targets the old passcode API and will fail."
+  ],
+  "critical_code_review_comments": [
+    "The reset_all history entry does not save the previous scores, so a reset cannot be audited or undone. Consider storing a snapshot.",
+    "ContentTab copies the content into useState(editable) only when the tab first opens. If /api/content has not loaded yet, the admin edits the defaults and saving overwrites the stored content.",
+    "Public GET /api/leaderboard games list omits max_score. That is fine for the public page, but the admin page reuses it (the ScoresTab bug above)."
+  ],
+  "updated_files": ["/app/backend/tests/test_admin_api.py", "/app/backend/tests/conftest.py", "/app/backend/tests/mint_tickets.py"],
+  "success_rate": {"backend": "96% (23/24)", "frontend": "~97% (all flows work; one medium ScoresTab max_score display/validation bug)"},
+  "test_credentials": "Used the 3 Clerk test users in /app/memory/test_credentials.md (dvsuperadmin, dvadmin, dvmember +clerk_test@example.com). They and their db.users roles are unchanged.",
+  "seed_data_creation": "None kept. All TEST participants and games, the site_content 'main' doc and the score_history entries from the test admins were deleted at the end. The DB was empty before testing and is empty again apart from the users.",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Run: cd /app/backend && python -m pytest tests/test_admin_api.py -o addopts='' -p no:xdist -v. conftest.py mints Clerk session JWTs; the tests reset all scores, so only run them on a DB without real scores. For UI: python tests/mint_tickets.py writes single-use sign-in tickets to /tmp/tickets.json; open /sign-in?__clerk_ticket=<ticket>, then /admin. Re-mint the tickets for each browser session."
+}

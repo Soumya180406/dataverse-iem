@@ -47,6 +47,13 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - Team: Faculty Co-ordinators with 2 user-supplied photos (Dr. Jeet Sen = faculty_1 blazer photo, Dr. Santanu Das = faculty_2); Student Leads Snigdha Saha, Soumyajit Banerjee; all role titles removed
 - Empty sponsor slots removed
 
+## Update (2026-11-08) — Admin dashboard (Clerk Google sign-in)
+- /admin protected by Clerk (Google only); roles super_admin (ADMIN_EMAIL) / admin / member (no access); Users tab super_admin only
+- Games CRUD (max score), participants & teams CRUD + bulk paste, per-game scores with auto totals/ranks, reset with confirm, history (admin name + time), CSV/Excel export
+- Website content editor (form link, contact, fees, prize pool, events, schedule, rules, FAQs, team names) stored in db.site_content, merged over defaults in frontend/src/context/SiteContent.jsx
+- Public /leaderboard: per-game chips, gold/silver/bronze, 5s polling; old /organiser passcode console removed (redirects to /admin)
+- Backend: admin_api.py (all routes), server.py (setup), clerk_auth.py
+
 ## Placeholders to replace
 Team names, contact email/phones, venue rooms, sponsor logos, refund policy line, sitemap domain.
 

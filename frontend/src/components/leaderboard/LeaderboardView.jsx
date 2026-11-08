@@ -44,8 +44,8 @@ export const RankTable = ({ items, games = [], empty = "No scores yet — check 
     <AnimatePresence initial={false}>
       {items.map((p) => (
         <motion.div key={p.id} layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.35 }}
-          className={`grid grid-cols-[56px_1fr_80px] items-center border-b border-white/5 px-4 py-3 text-sm last:border-b-0 sm:grid-cols-[72px_1fr_110px] ${MEDAL[p.rank]?.row || ""}`} data-testid={`leaderboard-row-${p.id}`}>
-          <span className={`font-mono text-base font-bold ${p.rank === 1 ? "text-amber-300" : p.rank === 2 ? "text-slate-200" : p.rank === 3 ? "text-orange-300" : "text-slate-400"}`}>#{p.rank}</span>
+          className={`grid grid-cols-[56px_1fr_80px] items-center border-b border-white/5 px-4 py-3 text-sm last:border-b-0 sm:grid-cols-[72px_1fr_110px] ${p.total > 0 ? MEDAL[p.rank]?.row || "" : ""}`} data-testid={`leaderboard-row-${p.id}`}>
+          <span className={`font-mono text-base font-bold ${p.total <= 0 ? "text-slate-400" : p.rank === 1 ? "text-amber-300" : p.rank === 2 ? "text-slate-200" : p.rank === 3 ? "text-orange-300" : "text-slate-400"}`}>#{p.rank}</span>
           <span className="min-w-0">
             <span className="block truncate text-white">{p.name}{p.kind === "team" && <span className="ml-2 rounded bg-purple-500/20 px-1.5 py-0.5 text-[10px] uppercase text-purple-200">Team</span>}</span>
             {p.college && <span className="block truncate text-xs text-slate-500">{p.college}</span>}

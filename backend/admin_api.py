@@ -219,7 +219,7 @@ async def add_participant(p: ParticipantIn):
 @router.get("/leaderboard")
 async def leaderboard():
     items = await ranked()
-    return {"games": [{"id": g["id"], "name": g["name"]} for g in await games_list()], "items": items,
+    return {"games": [{"id": g["id"], "name": g["name"], "max_score": g["max_score"]} for g in await games_list()], "items": items,
             "total": len(items), "updated_at": max((d["updated_at"] for d in items), default=None)}
 
 
@@ -275,6 +275,10 @@ async def create_game(body: GameIn, m: dict = Depends(staff)):
 
 @router.put("/admin/games/{gid}")
 async def update_game(gid: str, body: GameIn, m: dict = Depends(staff)):
+    if await db.games.find_one({"id": {"$ne": gid}, "name": {"$regex": f"^{re.escape(body.name)}$", "$options": "i"}}):
+        raise HTTPException(409, "A game with this name already exists")
+    if await db.participants.find_one({f"scores.{gid}": {"$gt": body.max_score}}):
+        raise HTTPException(409, "Some participants already have a higher score in this game. Lower those scores first.")
     g = await db.games.find_one_and_update({"id": gid}, {"$set": body.model_dump()}, projection={"_id": 0},
                                            return_document=ReturnDocument.AFTER)
     if not g:
@@ -371,6 +375,8 @@ async def set_score(pid: str, gid: str, body: ScoreIn, m: dict = Depends(staff))
         {"$set": {f"scores": {"$mergeObjects": ["$scores", {gid: body.score}]}}},
         {"$set": {"total": {"$sum": {"$map": {"input": {"$objectToArray": "$scores"}, "in": "$$this.v"}}},
                   "updated_at": now_iso()}}], projection=P_PROJ, return_document=ReturnDocument.AFTER)
+    if not p:
+        raise HTTPException(404, "Participant not found")
     await log(m, "score_set", participant_id=pid, participant_name=p["name"], game_id=gid, game_name=g["name"],
               old=old, new=body.score)
     return p
