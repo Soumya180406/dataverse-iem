@@ -19,6 +19,8 @@ export const NAV = [
 
 export const EVENTS = [
   { slug: "poster", name: "Poster Presentation", icon: Presentation, accent: "purple", tag: "Showcase your research & ideas",
+    template: "/downloads/Poster_Template_A1_DataVerse2K27.pptx", templateLabel: "Download poster template (A1)",
+    guide: "/downloads/Poster_Size_Guide_DataVerse2K27.pdf", templateNote: "Mandatory: A1 portrait (594 × 841 mm) using the official poster template, IEM & UEM logos kept.",
     blurb: "Turn your research, analysis or project into one powerful poster and walk the judges through your findings." },
   { slug: "ideaforge", name: "Ideaforge", icon: Lightbulb, accent: "cyan", tag: "Pitch your ideas. Create impact.",
     template: "/downloads/Ideaforge_PPT_Template_DataVerse2K27.pptx",
@@ -105,6 +107,12 @@ export const RULES = [
     "Maximum 6 slides: Title, Problem Statement, Proposed Solution, Data & Methodology, Impact & Feasibility, Conclusion.",
     "Do not remove or change the IEM and UEM logos, the header or the footer.",
     "Presentations that do not follow the template may be disqualified.",
+  ] },
+  { title: "Poster Presentation", items: [
+    "Poster size: A1 portrait — 594 mm × 841 mm. Download the size guide from the Poster Presentation event card.",
+    "Every participant must use the official DataVerse 2K27 poster template with the IEM and UEM logos.",
+    "Sections: Introduction, Objective, Data & Methodology, Results & Analysis, Conclusion, References.",
+    "Posters that do not follow the size or template may be disqualified.",
   ] },
   { title: "Code of Conduct", items: [
     "Respect fellow participants, volunteers, judges and campus property.",

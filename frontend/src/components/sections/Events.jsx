@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowUpRight, Download, FileWarning } from "lucide-react";
+import { ArrowUpRight, Download, FileWarning, Ruler } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { EVENTS } from "@/data/content";
 
@@ -18,9 +18,12 @@ const EventCard = ({ e, i }) => (
       <h3 className="mt-2 text-2xl font-bold text-white">{e.name}</h3>
       <p className="mt-3 text-sm leading-relaxed text-slate-400">{e.blurb}</p>
       {e.template && (
-        <div className="mt-5 rounded-2xl border border-cyan-400/30 bg-cyan-400/5 p-4" data-testid="ideaforge-template-box">
-          <p className="flex items-start gap-2 text-xs text-slate-300"><FileWarning className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" /> Mandatory: use the official PPT template — maximum 6 slides, IEM & UEM logos kept.</p>
-          <a href={e.template} download className="btn-neon mt-3 !px-4 !py-2 text-xs" data-testid="ideaforge-template-download"><Download className="h-4 w-4" /> Download PPT template</a>
+        <div className="mt-5 rounded-2xl border border-cyan-400/30 bg-cyan-400/5 p-4" data-testid={`${e.slug}-template-box`}>
+          <p className="flex items-start gap-2 text-xs text-slate-300"><FileWarning className="mt-0.5 h-4 w-4 shrink-0 text-amber-300" /> {e.templateNote || "Mandatory: use the official PPT template — maximum 6 slides, IEM & UEM logos kept."}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <a href={e.template} download className="btn-neon !px-4 !py-2 text-xs" data-testid={`${e.slug}-template-download`}><Download className="h-4 w-4" /> {e.templateLabel || "Download PPT template"}</a>
+            {e.guide && <a href={e.guide} target="_blank" rel="noopener noreferrer" className="btn-ghost !px-4 !py-2 text-xs" data-testid={`${e.slug}-guide-download`}><Ruler className="h-4 w-4" /> Size guide (PDF)</a>}
+          </div>
         </div>
       )}
       <Link to="/register" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white" data-testid={`event-register-${e.slug}`}>
