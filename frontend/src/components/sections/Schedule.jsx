@@ -1,18 +1,24 @@
 import { Star } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { SCHEDULE } from "@/data/content";
+import { AddToCalendar } from "@/components/site/AddToCalendar";
 
 const THEME = {
-  blue: { panel: "border-sky-400/40 shadow-[0_0_40px_rgba(56,189,248,0.15)]", pill: "bg-gradient-to-br from-blue-600 to-sky-500 shadow-[0_0_18px_rgba(56,189,248,0.45)]", line: "border-sky-400/40", dot: "bg-sky-300 shadow-[0_0_10px_rgba(125,211,252,0.9)]", icon: "text-sky-300", label: "text-sky-300" },
-  pink: { panel: "border-pink-400/40 shadow-[0_0_40px_rgba(236,72,153,0.15)]", pill: "bg-gradient-to-br from-fuchsia-700 to-pink-500 shadow-[0_0_18px_rgba(236,72,153,0.45)]", line: "border-pink-400/40", dot: "bg-pink-300 shadow-[0_0_10px_rgba(249,168,212,0.9)]", icon: "text-pink-300", label: "text-pink-300" },
+  blue: { panel: "border-sky-400/40 shadow-[0_0_40px_rgba(56,189,248,0.15)]", pill: "bg-gradient-to-br from-blue-600 to-sky-500 shadow-[0_0_18px_rgba(56,189,248,0.45)]", line: "border-sky-400/40", dot: "bg-sky-300 shadow-[0_0_10px_rgba(125,211,252,0.9)]", icon: "text-sky-300", label: "text-sky-300", btn: "border-sky-400/50 bg-sky-500/20 hover:bg-sky-500/35" },
+  pink: { panel: "border-pink-400/40 shadow-[0_0_40px_rgba(236,72,153,0.15)]", pill: "bg-gradient-to-br from-fuchsia-700 to-pink-500 shadow-[0_0_18px_rgba(236,72,153,0.45)]", line: "border-pink-400/40", dot: "bg-pink-300 shadow-[0_0_10px_rgba(249,168,212,0.9)]", icon: "text-pink-300", label: "text-pink-300", btn: "border-pink-400/50 bg-pink-500/20 hover:bg-pink-500/35" },
 };
 
 const DayPanel = ({ id, day }) => {
   const t = THEME[day.theme];
   return (
     <div className={`rounded-3xl border bg-[#070a16]/90 p-5 sm:p-7 ${t.panel}`} data-testid={`schedule-${id}`}>
-      <p className={`font-mono text-xs uppercase tracking-[0.3em] ${t.label}`}>{day.label}</p>
-      <h3 className="mt-1 font-display text-2xl font-bold text-white">{day.date}</h3>
+      <div className="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p className={`font-mono text-xs uppercase tracking-[0.3em] ${t.label}`}>{day.label}</p>
+          <h3 className="mt-1 font-display text-2xl font-bold text-white">{day.date}</h3>
+        </div>
+        <AddToCalendar id={id} day={day} accent={t.btn} />
+      </div>
       <ol className="mt-6 space-y-3">
         {day.items.map((it, i) => (
           <li key={i} className={`flex items-center gap-3 border-b pb-3 last:border-b-0 sm:gap-5 ${t.line}`} data-testid={`schedule-${id}-item-${i}`}>

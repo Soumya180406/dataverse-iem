@@ -65,7 +65,7 @@ export const TIERS = [
 ];
 
 export const SCHEDULE = {
-  day1: { label: "Day 01", date: "Saturday, 13 Feb 2027", theme: "blue", items: [
+  day1: { label: "Day 01", date: "Saturday, 13 Feb 2027", theme: "blue", cal: { start: "20270213T033000Z", end: "20270213T110000Z" }, items: [
     { start: "9:00 AM", end: "9:30 AM", title: "Registration", sub: "& Welcome Kit Distribution", icon: ClipboardCheck },
     { start: "9:30 AM", end: "10:00 AM", title: "Opening Ceremony", icon: Mic },
     { start: "10:00 AM", end: "11:00 AM", title: "Workshop 1", sub: "Industry Expert Session", icon: GraduationCap },
@@ -73,13 +73,13 @@ export const SCHEDULE = {
     { start: "1:30 PM", end: "2:30 PM", title: "Lunch Break", icon: Utensils },
     { start: "2:30 PM", end: "4:30 PM", title: "Data Treasure Hunt", icon: Map },
   ] },
-  day2: { label: "Day 02", date: "Sunday, 14 Feb 2027", theme: "pink", items: [
+  day2: { label: "Day 02", date: "Sunday, 14 Feb 2027", theme: "pink", cal: { start: "20270214T040000Z", end: "20270214T120000Z" }, items: [
     { start: "9:30 AM", end: "10:30 AM", title: "Ideaforge", sub: "Idea Pitch Competition", icon: Lightbulb },
     { start: "10:30 AM", end: "1:30 PM", title: "Games Carnival", sub: "10 Exciting Games", icon: Gamepad2 },
     { start: "1:30 PM", end: "2:30 PM", title: "Lunch Break", icon: Utensils },
     { start: "2:30 PM", end: "4:00 PM", title: "Workshop 2", sub: "Emerging Technologies Session", icon: GraduationCap },
     { start: "4:00 PM", end: "4:30 PM", title: "Prize Distribution Ceremony", icon: Trophy },
-    { start: "4:30 PM", end: "5:30 PM", title: "Grand Auction", sub: "Mystery Prizes Await!", icon: Gavel },
+    { start: "4:30 PM", end: "5:30 PM", title: "Mega Auction", sub: "Mystery Prizes Await!", icon: Gavel },
   ] },
 };
 
