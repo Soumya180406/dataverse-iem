@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "@/components/ui/sonner";
 import Home from "@/pages/Home";
 import Register from "@/pages/Register";
+import Leaderboard from "@/pages/Leaderboard";
+import Organiser from "@/pages/Organiser";
 
 function App() {
   return (
@@ -10,6 +12,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/register" element={<Register />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/organiser" element={<Organiser />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>

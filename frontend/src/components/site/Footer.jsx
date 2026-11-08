@@ -18,6 +18,7 @@ export const Footer = () => (
       <div className="flex flex-col gap-3 text-sm">
         <p className="eyebrow">Quick links</p>
         <Link to="/register" className="text-slate-300 hover:text-cyan-300" data-testid="footer-register-link">Register</Link>
+        <Link to="/leaderboard" className="text-slate-300 hover:text-cyan-300" data-testid="footer-leaderboard-link">Live leaderboard</Link>
         <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-pink-300" data-testid="footer-instagram-link">
           <Instagram className="h-4 w-4" /> {INSTAGRAM_HANDLE}
         </a>

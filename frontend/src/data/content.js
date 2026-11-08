@@ -8,6 +8,7 @@ export const NAV = [
   { id: "about", label: "About" },
   { id: "events", label: "Events" },
   { id: "prizes", label: "Prizes" },
+  { id: "leaderboard", label: "Leaderboard" },
   { id: "schedule", label: "Schedule" },
   { id: "rules", label: "Rules" },
   { id: "sponsors", label: "Sponsors" },

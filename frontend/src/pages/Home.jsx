@@ -13,6 +13,7 @@ import { Gallery } from "@/components/sections/Gallery";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 import { Prizes } from "@/components/sections/Prizes";
+import { LeaderboardSection } from "@/components/sections/LeaderboardSection";
 import { REGISTRATION_FORM_URL } from "@/data/content";
 
 const Marquee = () => (
@@ -57,6 +58,7 @@ export default function Home() {
         <About />
         <Events />
         <Prizes />
+        <LeaderboardSection />
         <Schedule />
         <Rules />
         <Sponsors />
