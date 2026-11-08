@@ -8,7 +8,7 @@ export const Footer = () => (
     <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-3 lg:px-8">
       <div>
         <Logo />
-        <p className="mt-4 max-w-xs text-sm text-slate-400">Compete • Analyze • Conquer. 13–14 February 2027 at IEM Kolkata.</p>
+        <p className="mt-4 max-w-xs text-sm text-slate-400">Compete • Analyze • Conquer. A Data Science & Innovation Fest — 13–14 February 2027 (Sat–Sun) at IEM Management Building, Sector V, Kolkata.</p>
       </div>
       <div className="text-sm text-slate-400">
         <p className="eyebrow mb-3">Organised by</p>

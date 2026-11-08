@@ -18,6 +18,13 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - Register page: fee tiers + button to the Google Form (new tab)
 - Mobile menu sheet, smooth section scrolling, responsive 390/768/1920 (tested)
 
+## Update (2026-11-08) — poster details added
+- From user's poster: "A Data Science & Innovation Fest", "From Data to Impact", Sat–Sun, venue IEM Management Building, EP Block, Sector V, Kolkata 700091
+- Event taglines, Grand Auction renamed Mega Auction
+- Fee perks (Central ₹449 all events + Mega Auction; event-wise Ideaforge/Poster ₹350/₹399, no Mega Auction); IEM students reimbursed
+- New Prizes section (₹24,000+ pool, mystery auction, highlights); partner logos cropped from poster (IEM, Lions Club, Rotary, IIC, SDS, UEM)
+- Contact: dataverse2k27@gmail.com, 6291540402, 8777681364; scan-to-register QR of Google Form
+
 ## Placeholders to replace
 Team names, contact email/phones, venue rooms, sponsor logos, refund policy line, sitemap domain.
 

@@ -31,12 +31,15 @@ export const Hero = () => {
           <motion.p {...fade(0.2)} className="mt-6 font-mono text-sm uppercase tracking-[0.35em] text-cyan-300 sm:text-base" data-testid="hero-tagline">
             Compete • Analyze • Conquer
           </motion.p>
+          <motion.p {...fade(0.25)} className="mt-4 inline-block rounded-full bg-gradient-to-r from-purple-600/40 to-cyan-500/30 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.25em] text-white" data-testid="hero-subtitle">
+            A Data Science & Innovation Fest
+          </motion.p>
           <motion.p {...fade(0.3)} className="mt-6 max-w-xl text-base text-slate-300 md:text-lg">
-            Two days of ideas, data and fierce competition — six events built for curious minds who love to turn numbers into answers.
+            <span className="font-display text-xl font-semibold italic text-white">“From Data to Impact”</span> — Innovate. Analyze. Transform. Two days, six events and a ₹24,000+ prize pool.
           </motion.p>
           <motion.div {...fade(0.4)} className="mt-8 flex flex-wrap gap-3 text-sm text-slate-300">
-            <span className="glass flex items-center gap-2 rounded-full px-4 py-2"><CalendarDays className="h-4 w-4 text-cyan-300" /> 13–14 Feb 2027</span>
-            <span className="glass flex items-center gap-2 rounded-full px-4 py-2"><MapPin className="h-4 w-4 text-purple-300" /> IEM, Kolkata</span>
+            <span className="glass flex items-center gap-2 rounded-full px-4 py-2"><CalendarDays className="h-4 w-4 text-cyan-300" /> 13–14 Feb 2027 · Sat–Sun</span>
+            <span className="glass flex items-center gap-2 rounded-full px-4 py-2"><MapPin className="h-4 w-4 text-purple-300" /> IEM Management Building, Sector V, Kolkata</span>
           </motion.div>
           <motion.div {...fade(0.5)} className="mt-10 flex flex-wrap gap-4">
             <Link to="/register" className="btn-neon" data-testid="hero-register-btn">Register now <ArrowRight className="h-4 w-4" /></Link>

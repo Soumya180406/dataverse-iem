@@ -6,7 +6,16 @@ export const Sponsors = () => (
   <section id="sponsors" className="relative overflow-hidden py-20 md:py-32" data-testid="sponsors-section">
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="sponsors" eyebrow="// Sponsors & Partners" title="Powered by people who believe in data" />
-      <div className="grid gap-6 md:grid-cols-3">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+        {SPONSORS.logos.map((l, i) => (
+          <Reveal key={l.src} delay={i * 0.06}>
+            <div className="group flex h-32 items-center justify-center overflow-hidden rounded-2xl bg-white p-3 transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(0,240,255,0.3)]" data-testid={`partner-logo-${i}`}>
+              <img src={l.src} alt={l.name} title={l.name} loading="lazy" className="max-h-[6.5rem] max-w-full object-contain" />
+            </div>
+          </Reveal>
+        ))}
+      </div>
+      <div className="mt-6 grid gap-6 md:grid-cols-2">
         {SPONSORS.partners.map((p, i) => (
           <Reveal key={p.name} delay={i * 0.1} className="glass rounded-3xl p-7 transition-[border-color,box-shadow] duration-300 hover:border-amber-400/50 hover:shadow-[0_0_30px_rgba(245,158,11,0.15)]">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-amber-300">{p.role}</p>

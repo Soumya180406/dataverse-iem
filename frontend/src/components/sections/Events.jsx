@@ -29,7 +29,7 @@ export const Events = () => (
     <div className="cyber-grid absolute inset-0 opacity-40 [mask-image:linear-gradient(to_bottom,transparent,black,transparent)]" />
     <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <SectionHeading id="events" eyebrow="// Event Categories" title={<>Six arenas. <span className="text-amber-300">One verse.</span></>}
-        sub="Choose one, two or take on all six with the Central Registration pass." />
+        sub="Central Registration unlocks all six events and the Mega Auction. Event-wise passes are available for Ideaforge and Poster Presentation." />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {EVENTS.map((e, i) => <EventCard key={e.slug} e={e} i={i} />)}
       </div>

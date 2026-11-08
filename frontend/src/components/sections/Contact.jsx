@@ -9,9 +9,10 @@ export const Contact = () => (
       <div className="grid gap-6 lg:grid-cols-12">
         <Reveal className="space-y-4 lg:col-span-5">
           <div className="glass space-y-5 rounded-3xl p-7">
-            <p className="flex gap-3 text-slate-300"><Mail className="h-5 w-5 shrink-0 text-cyan-300" /> <span data-testid="contact-email">{CONTACT.email}</span></p>
+            <a href={`mailto:${CONTACT.email}`} className="flex gap-3 text-slate-300 hover:text-cyan-300"><Mail className="h-5 w-5 shrink-0 text-cyan-300" /> <span data-testid="contact-email">{CONTACT.email}</span></a>
+            <p className="font-mono text-xs uppercase tracking-widest text-slate-500">For any queries, contact us</p>
             {CONTACT.phones.map((p, i) => (
-              <p key={i} className="flex gap-3 text-slate-300"><Phone className="h-5 w-5 shrink-0 text-purple-300" /> <span data-testid={`contact-phone-${i}`}>{p}</span></p>
+              <a key={i} href={`tel:+91${p}`} className="flex gap-3 text-slate-300 hover:text-purple-300"><Phone className="h-5 w-5 shrink-0 text-purple-300" /> <span data-testid={`contact-phone-${i}`}>{p}</span></a>
             ))}
             <p className="flex gap-3 text-slate-300"><MapPin className="h-5 w-5 shrink-0 text-amber-300" /> {CONTACT.address}</p>
           </div>
