@@ -50,7 +50,7 @@ export const Hero = () => {
           <div className="glass rounded-3xl p-5 sm:p-7">
             <div className="mb-5 flex items-center justify-between">
               <p className="eyebrow">Countdown to launch</p>
-              <span className="font-mono text-xs text-slate-500">IST 09:30</span>
+              <span className="font-mono text-xs text-slate-500">IST 09:00</span>
             </div>
             <Countdown />
             <div className="mt-6 grid grid-cols-3 gap-2 text-center">

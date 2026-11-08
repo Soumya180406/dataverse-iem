@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /organiser
-Sitemap: https://YOUR-COLLEGE-DOMAIN/sitemap.xml
+Disallow: /admin
+Disallow: /sign-in
+Disallow: /sign-up

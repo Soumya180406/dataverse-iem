@@ -12,4 +12,4 @@ export const errMsg = (e, fallback = "Something went wrong") => {
   return d || fallback;
 };
 
-export const EVENT_START = new Date("2027-02-13T09:30:00+05:30");
+export const EVENT_START = new Date("2027-02-13T09:00:00+05:30");
