@@ -129,7 +129,7 @@ export const SPONSORS = {
   ],
   logos: [
     { src: "/images/logo_iem.png", name: "Institute of Engineering & Management" },
-    { src: "/images/logo_lions.png", name: "The Lion's Club of Kolkata, IEM" },
+    { src: "/images/logo_lions.png", name: "Lions Club of Kolkata Saltlake IEM" },
     { src: "/images/logo_rotary.png", name: "Rotary Club of Salt Lake Silicon Valley" },
     { src: "/images/logo_iic.png", name: "Institution's Innovation Council (Ministry of Education Initiative)" },
     { src: "/images/logo_sds.png", name: "Society for Data Science, IEM Student Chapter" },
@@ -139,8 +139,8 @@ export const SPONSORS = {
 
 export const TEAM = {
   faculty: [
-    { name: "Dr. Jeet Sen", photo: "/images/faculty_1.jpg" },
     { name: "Dr. Santanu Das", photo: "/images/faculty_2.jpg" },
+    { name: "Dr. Jeet Sen", photo: "/images/faculty_1.jpg" },
   ],
   students: [{ name: "Snigdha Saha" }, { name: "Soumyajit Banerjee" }],
 };

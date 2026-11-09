@@ -54,6 +54,10 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - Public /leaderboard: per-game chips, gold/silver/bronze, 5s polling; old /organiser passcode console removed (redirects to /admin)
 - Backend: admin_api.py (all routes), server.py (setup), clerk_auth.py
 
+## Update (2026-11-09) — User-supplied logos & faculty order
+- logo_iem/uem/rotary/lions.png replaced with user-uploaded originals; Lions renamed "Lions Club of Kolkata Saltlake IEM"; all 3 template files regenerated
+- Faculty order: Dr. Santanu Das first, Dr. Jeet Sen second
+
 ## Placeholders to replace
 Team names, contact email/phones, venue rooms, sponsor logos, refund policy line, sitemap domain.
 
