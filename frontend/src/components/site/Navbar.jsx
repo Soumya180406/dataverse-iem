@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { NAV } from "@/data/content";
+import { NAV, REGISTRATION_FORM_URL } from "@/data/content";
 
 export const Logo = () => (
   <Link to="/" className="group flex items-center gap-2" data-testid="nav-logo">
@@ -52,7 +52,7 @@ export const Navbar = () => {
           ))}
         </div>
         <div className="flex items-center gap-2">
-          <Link to="/register" className="btn-neon !px-5 !py-2 text-sm" data-testid="nav-register-btn">Register</Link>
+          <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-neon !px-5 !py-2 text-sm" data-testid="nav-register-btn">Register</a>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <button className="grid h-10 w-10 place-items-center rounded-full border border-slate-700 text-slate-200 lg:hidden" data-testid="nav-mobile-menu-btn" aria-label="Open menu">

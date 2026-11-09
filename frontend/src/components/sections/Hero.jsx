@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { REGISTRATION_FORM_URL } from "@/data/content";
 import { motion } from "framer-motion";
 import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 import { Countdown } from "@/components/site/Countdown";
@@ -42,7 +42,7 @@ export const Hero = () => {
             <span className="glass flex items-center gap-2 rounded-full px-4 py-2"><MapPin className="h-4 w-4 text-purple-300" /> IEM Management Building, Sector V, Kolkata</span>
           </motion.div>
           <motion.div {...fade(0.5)} className="mt-10 flex flex-wrap gap-4">
-            <Link to="/register" className="btn-neon" data-testid="hero-register-btn">Register now <ArrowRight className="h-4 w-4" /></Link>
+            <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-neon" data-testid="hero-register-btn">Register now <ArrowRight className="h-4 w-4" /></a>
             <button onClick={() => go("events")} className="btn-ghost" data-testid="hero-events-btn">Explore events</button>
           </motion.div>
         </div>
@@ -55,10 +55,10 @@ export const Hero = () => {
             <Countdown />
             <div className="mt-6 grid grid-cols-3 gap-2 text-center">
               {[["₹350", "Single"], ["₹399", "Double"], ["₹449", "Central"]].map(([p, l]) => (
-                <Link key={l} to="/register" className="rounded-xl border border-slate-700/70 px-2 py-3 transition-[border-color] duration-200 hover:border-amber-400/60" data-testid={`hero-fee-${l.toLowerCase()}`}>
+                <a key={l} href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-slate-700/70 px-2 py-3 transition-[border-color] duration-200 hover:border-amber-400/60" data-testid={`hero-fee-${l.toLowerCase()}`}>
                   <div className="font-display text-xl font-bold text-amber-300">{p}</div>
                   <div className="text-xs text-slate-400">{l}</div>
-                </Link>
+                </a>
               ))}
             </div>
           </div>

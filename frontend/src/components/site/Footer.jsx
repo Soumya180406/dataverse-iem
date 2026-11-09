@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Instagram } from "lucide-react";
 import { Logo } from "@/components/site/Navbar";
-import { INSTAGRAM_URL, INSTAGRAM_HANDLE } from "@/data/content";
+import { INSTAGRAM_URL, INSTAGRAM_HANDLE, REGISTRATION_FORM_URL } from "@/data/content";
 
 export const Footer = () => (
   <footer className="no-print relative border-t border-purple-500/20 bg-[#04060c]">
@@ -17,7 +17,7 @@ export const Footer = () => (
       </div>
       <div className="flex flex-col gap-3 text-sm">
         <p className="eyebrow">Quick links</p>
-        <Link to="/register" className="text-slate-300 hover:text-cyan-300" data-testid="footer-register-link">Register</Link>
+        <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-cyan-300" data-testid="footer-register-link">Register</a>
         <Link to="/leaderboard" className="text-slate-300 hover:text-cyan-300" data-testid="footer-leaderboard-link">Live leaderboard</Link>
         <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-slate-300 hover:text-pink-300" data-testid="footer-instagram-link">
           <Instagram className="h-4 w-4" /> {INSTAGRAM_HANDLE}

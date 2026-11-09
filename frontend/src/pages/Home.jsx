@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { REGISTRATION_FORM_URL } from "@/data/content";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Hero } from "@/components/sections/Hero";
@@ -34,7 +35,7 @@ const CtaBand = () => { const { REGISTRATION_FORM_URL } = useSite(); return (
       <p className="eyebrow">// Be a part of something bigger</p>
       <h2 className="mt-4 max-w-2xl text-3xl font-bold text-white sm:text-4xl lg:text-5xl">Claim your place in the verse.</h2>
       <div className="mt-8 flex flex-wrap gap-4">
-        <Link to="/register" className="btn-gold" data-testid="cta-register-btn">Register now</Link>
+        <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-gold" data-testid="cta-register-btn">Register now</a>
         <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="btn-ghost" data-testid="cta-google-form-btn">Open Google Form</a>
       </div>
     </div>

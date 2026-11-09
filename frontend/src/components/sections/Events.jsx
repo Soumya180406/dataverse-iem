@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { REGISTRATION_FORM_URL } from "@/data/content";
 import { ArrowUpRight, Download, FileWarning, Ruler } from "lucide-react";
 import { Reveal, SectionHeading } from "@/components/site/Reveal";
 import { useSite } from "@/context/SiteContent";
@@ -26,9 +26,9 @@ const EventCard = ({ e, i }) => (
           </div>
         </div>
       )}
-      <Link to="/register" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white" data-testid={`event-register-${e.slug}`}>
+      <a href={REGISTRATION_FORM_URL} target="_blank" rel="noopener noreferrer" className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white" data-testid={`event-register-${e.slug}`}>
         Register for this <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-      </Link>
+      </a>
     </div>
   </Reveal>
 );
