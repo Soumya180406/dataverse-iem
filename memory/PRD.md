@@ -58,6 +58,10 @@ Fees: Single 350, Double 399, Central 449. Solo only.
 - logo_iem/uem/rotary/lions.png replaced with user-uploaded originals; Lions renamed "Lions Club of Kolkata Saltlake IEM"; all 3 template files regenerated
 - Faculty order: Dr. Santanu Das first, Dr. Jeet Sen second
 
+## Update (2026-11-20) — Register buttons & README
+- All Register buttons open the Google Form in a new tab
+- README.md rewritten as official technical documentation (architecture, DB, admin, leaderboard, setup, env vars, hosting, DNS for dataverse.iem.edu.in)
+
 ## Placeholders to replace
 Team names, contact email/phones, venue rooms, sponsor logos, refund policy line, sitemap domain.
 
